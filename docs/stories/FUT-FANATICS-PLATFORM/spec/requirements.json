@@ -1,0 +1,349 @@
+{
+  "storyId": "FUT-FANATICS-PLATFORM",
+  "gatheredAt": "2026-10-05T23:23:04Z",
+  "source": "user",
+  "gatheredBy": "@pm",
+  "elicitationVersion": "2.0",
+  "functional": [
+    {
+      "id": "FR-1",
+      "description": "O sistema deve permitir acesso conforme os perfis de investidor, torcedor e administrador, restringindo cada usuário às funcionalidades autorizadas para seu perfil.",
+      "priority": "P0",
+      "rationale": "Os três perfis possuem necessidades e níveis de acesso distintos.",
+      "acceptance": [
+        "AC-01: Um usuário autenticado como torcedor não acessa relatórios exclusivos de investidor nem funções administrativas.",
+        "AC-02: Um usuário autenticado como investidor acessa relatórios permitidos e não acessa funções administrativas.",
+        "AC-03: Um usuário autenticado como administrador acessa as funções de gestão do sistema."
+      ]
+    },
+    {
+      "id": "FR-2",
+      "description": "O administrador deve gerenciar os usuários, perfis e permissões, times, temporada, partidas, resultados, estatísticas e configurações necessárias ao funcionamento do produto.",
+      "priority": "P0",
+      "rationale": "O solicitante definiu que o administrador gerencia todo o produto.",
+      "acceptance": [
+        "AC-04: O administrador consegue consultar e manter os registros operacionais do produto.",
+        "AC-05: Alterações administrativas relevantes ficam registradas com autor, data e ação realizada.",
+        "AC-06: Usuários sem perfil administrativo não conseguem executar operações de gestão."
+      ]
+    },
+    {
+      "id": "FR-3",
+      "description": "O sistema deve apresentar o Campeonato Brasileiro Série A da temporada 2026, incluindo os times participantes e suas partidas encerradas.",
+      "priority": "P0",
+      "rationale": "O escopo inicial informado é Brasileirão Série A, temporada atual de 2026.",
+      "acceptance": [
+        "AC-07: A competição exibida é identificada como Brasileirão Série A de 2026.",
+        "AC-08: Partidas e times exibidos pertencem à temporada configurada."
+      ]
+    },
+    {
+      "id": "FR-4",
+      "description": "O sistema deve atualizar os resultados e estatísticas esportivas de uma partida quando a fonte de dados confirmar oficialmente seu encerramento.",
+      "priority": "P0",
+      "rationale": "Os dados devem ser atualizados ao final de cada jogo, sem requisito de atualização ao vivo durante a partida.",
+      "acceptance": [
+        "AC-09: Uma partida ainda não encerrada não altera a classificação como resultado final.",
+        "AC-10: Após a confirmação de encerramento, o resultado e as estatísticas recebidos são aplicados à temporada correspondente.",
+        "AC-11: O sistema informa a data e hora da última atualização dos dados apresentados."
+      ]
+    },
+    {
+      "id": "FR-5",
+      "description": "O sistema deve calcular e apresentar a tabela da Série A de 2026 com posição, pontos, partidas, vitórias, empates, derrotas, gols pró, gols contra e saldo de gols.",
+      "priority": "P0",
+      "rationale": "A tabela do campeonato é uma necessidade central dos torcedores e dos relatórios esportivos.",
+      "acceptance": [
+        "AC-12: A tabela reflete os resultados finais registrados para a temporada.",
+        "AC-13: Times empatados em pontos seguem os critérios oficiais de desempate da competição.",
+        "AC-14: A tabela indica quando seus dados foram atualizados pela última vez."
+      ]
+    },
+    {
+      "id": "FR-6",
+      "description": "O torcedor deve poder selecionar ou filtrar um time e consultar sua posição, estatísticas da temporada, partidas, resultados e os dados correspondentes na tabela.",
+      "priority": "P0",
+      "rationale": "O torcedor quer acompanhar as estatísticas de seu time e a tabela do campeonato, com filtro por time.",
+      "acceptance": [
+        "AC-15: Ao selecionar um time, o torcedor visualiza os dados daquele time na Série A de 2026.",
+        "AC-16: O torcedor consegue acessar a tabela completa e identificar o time selecionado.",
+        "AC-17: Se nenhum time for selecionado, o sistema oferece uma visão geral da competição."
+      ]
+    },
+    {
+      "id": "FR-7",
+      "description": "O investidor deve consultar relatórios da performance esportiva dos times da Série A, com indicadores comparáveis por time e temporada.",
+      "priority": "P0",
+      "rationale": "O investidor acompanha o desempenho dos times do campeonato por meio de relatórios.",
+      "acceptance": [
+        "AC-18: Os relatórios apresentam os indicadores de classificação e desempenho definidos para a temporada.",
+        "AC-19: O investidor consegue comparar os times incluídos no escopo autorizado.",
+        "AC-20: Os relatórios mostram a temporada e a data da última atualização dos dados."
+      ]
+    },
+    {
+      "id": "FR-8",
+      "description": "O investidor deve consultar relatórios agregados de uso do aplicativo, incluindo quantidade de usuários ativos, sessões e acessos por período.",
+      "priority": "P1",
+      "rationale": "O pedido inicial inclui números de acesso ao aplicativo; estes são indicadores de uso, distintos da performance esportiva dos times.",
+      "acceptance": [
+        "AC-21: O investidor consegue consultar os indicadores de uso em períodos selecionáveis.",
+        "AC-22: Os relatórios de uso apresentam dados agregados, sem expor identificadores pessoais de torcedores.",
+        "AC-23: Quando não houver dados para o período, o relatório apresenta estado vazio explícito."
+      ]
+    },
+    {
+      "id": "FR-9",
+      "description": "O investidor deve poder filtrar os relatórios esportivos por temporada, time e período disponível nos dados.",
+      "priority": "P1",
+      "rationale": "Filtros tornam os relatórios úteis para comparação sem pressupor funcionalidades de transação financeira.",
+      "acceptance": [
+        "AC-24: Alterar um filtro atualiza os dados do relatório e mantém visível o contexto selecionado.",
+        "AC-25: Filtros incompatíveis ou sem resultados produzem uma mensagem clara, sem apresentar dados incorretos."
+      ]
+    },
+    {
+      "id": "FR-10",
+      "description": "O administrador deve conseguir identificar a atualidade dos dados esportivos e falhas de atualização que exijam revisão.",
+      "priority": "P1",
+      "rationale": "A persona administradora precisa acompanhar falhas e saber quais dados podem estar desatualizados.",
+      "acceptance": [
+        "AC-26: O administrador consegue identificar quando uma atualização esportiva falha ou exige revisão.",
+        "AC-27: Em caso de falha, os últimos dados válidos são preservados e sua condição de desatualização é sinalizada."
+      ]
+    },
+    {
+      "id": "FR-11",
+      "description": "O sistema deve validar alterações administrativas antes de aplicá-las aos registros operacionais.",
+      "priority": "P1",
+      "rationale": "A persona administradora requer validação antes de salvar alterações que afetem dados esportivos.",
+      "acceptance": [
+        "AC-28: Uma alteração inválida não é persistida.",
+        "AC-29: Quando uma alteração é rejeitada, o administrador recebe uma indicação compreensível do que precisa corrigir."
+      ]
+    },
+    {
+      "id": "FR-12",
+      "description": "O sistema deve manter consistentes os indicadores esportivos após uma correção administrativa autorizada de resultado ou estatística.",
+      "priority": "P1",
+      "rationale": "Correções administrativas devem refletir-se nas estatísticas dependentes sem duplicar partidas e sem perder a trilha de auditoria.",
+      "acceptance": [
+        "AC-30: Após uma correção válida, os indicadores dependentes são recalculados para refletir os dados corrigidos.",
+        "AC-31: A correção não cria uma partida duplicada e a alteração permanece registrada com autor, data/hora e ação realizada."
+      ]
+    }
+  ],
+  "nonFunctional": [
+    {
+      "id": "NFR-1",
+      "category": "usability",
+      "description": "O produto deve funcionar como site responsivo em celulares, tablets e desktops, com interface em português do Brasil.",
+      "metric": "Conteúdo e ações principais permanecem utilizáveis nas três classes de dispositivo, sem rolagem horizontal da página em larguras suportadas."
+    },
+    {
+      "id": "NFR-2",
+      "category": "performance",
+      "description": "As páginas de tabela e relatórios devem carregar rapidamente sob a carga esperada para o MVP.",
+      "metric": "95% das consultas de tabela e relatório respondem em até 3 segundos sob a carga de referência definida na arquitetura."
+    },
+    {
+      "id": "NFR-3",
+      "category": "reliability",
+      "description": "Os dados de partidas, tabela e relatórios devem permanecer consistentes e indicar sua atualidade quando uma integração ou atualização falhar.",
+      "metric": "Após a fonte confirmar o encerramento, a atualização deve estar disponível em até 15 minutos; falhas não podem substituir dados válidos por dados incompletos e devem ser sinalizadas para operação."
+    },
+    {
+      "id": "NFR-4",
+      "category": "security",
+      "description": "O sistema deve aplicar autorização por perfil no servidor e proteger dados de uso do aplicativo, observando a legislação de proteção de dados aplicável, incluindo a LGPD.",
+      "metric": "Acesso não autorizado é negado em todas as operações protegidas; relatórios de uso para investidores não expõem dados pessoais identificáveis."
+    },
+    {
+      "id": "NFR-5",
+      "category": "usability",
+      "description": "As telas e informações essenciais devem atender às diretrizes de acessibilidade WCAG 2.2 nível AA.",
+      "metric": "Fluxos de consulta de tabela e relatórios atendem aos critérios WCAG 2.2 AA aplicáveis e são verificáveis por testes automatizados e revisão manual."
+    }
+  ],
+  "constraints": [
+    {
+      "id": "CON-1",
+      "type": "business",
+      "description": "O escopo esportivo inicial está limitado ao Brasileirão Série A da temporada 2026.",
+      "impact": "Outras divisões e temporadas não fazem parte do primeiro escopo, embora a temporada deva ser identificável nos dados."
+    },
+    {
+      "id": "CON-2",
+      "type": "business",
+      "description": "Não foi exigido um fornecedor específico de dados esportivos nem atualização ao vivo durante as partidas.",
+      "impact": "A integração deve ser escolhida posteriormente considerando cobertura, precisão, atualização após encerramento, custo e direitos de uso."
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "ASM-1",
+      "description": "A performance solicitada para investidores significa desempenho esportivo dos times; métricas de acesso ao aplicativo são relatórios separados.",
+      "risk": "low",
+      "validation_needed": false
+    },
+    {
+      "id": "ASM-2",
+      "description": "A primeira versão dos relatórios esportivos cobre os times da Série A, conforme o pedido inicial de visualizar todos os times; a autorização final por investidor ainda deve ser confirmada.",
+      "risk": "high",
+      "validation_needed": true
+    },
+    {
+      "id": "ASM-3",
+      "description": "Investidores consultam relatórios e não executam transações, recebem recomendações financeiras nem visualizam retorno financeiro de investimentos nesta primeira versão.",
+      "risk": "medium",
+      "validation_needed": true
+    },
+    {
+      "id": "ASM-4",
+      "description": "A atualização após o fim do jogo ocorre quando uma fonte confiável informa o estado final; em indisponibilidade ou correção de dados, um administrador pode revisar o registro com trilha de auditoria.",
+      "risk": "medium",
+      "validation_needed": true
+    },
+    {
+      "id": "ASM-5",
+      "description": "Os indicadores iniciais de acesso são usuários ativos, sessões e acessos agregados por período; não incluem rastreamento individual visível ao investidor.",
+      "risk": "low",
+      "validation_needed": true
+    },
+    {
+      "id": "ASM-6",
+      "description": "A meta inicial de atualização em até 15 minutos após a confirmação de encerramento é um objetivo de produto sujeito à capacidade e ao contrato da fonte de dados escolhida.",
+      "risk": "medium",
+      "validation_needed": true
+    }
+  ],
+  "domainModel": [
+    {
+      "entity": "Usuário",
+      "description": "Pessoa autenticada que utiliza o produto com um ou mais perfis autorizados.",
+      "relationships": ["possui perfil", "pode selecionar time favorito"]
+    },
+    {
+      "entity": "Perfil e Permissão",
+      "description": "Papel de investidor, torcedor ou administrador e suas operações autorizadas.",
+      "relationships": ["vincula-se a usuário"]
+    },
+    {
+      "entity": "Time",
+      "description": "Clube participante da competição e unidade principal de consulta esportiva.",
+      "relationships": ["participa de temporada", "disputa partidas", "possui estatísticas"]
+    },
+    {
+      "entity": "Competição e Temporada",
+      "description": "Brasileirão Série A e sua edição de 2026.",
+      "relationships": ["inclui times", "organiza partidas", "possui tabela"]
+    },
+    {
+      "entity": "Partida e Resultado",
+      "description": "Jogo entre times, com data, estado, resultado final e estatísticas disponíveis.",
+      "relationships": ["pertence a temporada", "relaciona dois times", "alimenta tabela"]
+    },
+    {
+      "entity": "Tabela e Estatística Esportiva",
+      "description": "Indicadores derivados de partidas encerradas, incluindo classificação e desempenho por time.",
+      "relationships": ["pertence a temporada", "resume partidas e times"]
+    },
+    {
+      "entity": "Relatório de Uso",
+      "description": "Indicadores agregados de utilização do aplicativo por período.",
+      "relationships": ["resume eventos de uso", "é acessado por investidor autorizado"]
+    },
+    {
+      "entity": "Evento de Uso e Auditoria",
+      "description": "Registro operacional de acesso agregado ou de ação administrativa relevante.",
+      "relationships": ["evento de uso alimenta relatório", "ação administrativa identifica autor e data"]
+    }
+  ],
+  "interactions": [
+    {
+      "flow": "Consulta do torcedor",
+      "description": "A jornada completa, com etapas da interface, respostas do sistema, estados e requisitos relacionados, está documentada em ../../../prd/jornadas-e-requisitos-funcionais.md. Em resumo, o torcedor acessa a Série A de 2026, seleciona ou filtra um time, consulta sua campanha e alterna para a tabela completa.",
+      "states": ["carregando dados", "dados disponíveis", "nenhum time selecionado", "dados indisponíveis ou desatualizados"]
+    },
+    {
+      "flow": "Consulta do investidor",
+      "description": "A jornada completa, com etapas da interface, respostas do sistema, estados e requisitos relacionados, está documentada em ../../../prd/jornadas-e-requisitos-funcionais.md. Em resumo, o investidor abre relatórios, seleciona temporada, time ou período e consulta performance esportiva ou indicadores agregados de uso do aplicativo.",
+      "states": ["carregando relatório", "relatório disponível", "sem dados no período", "acesso não autorizado", "dados desatualizados"]
+    },
+    {
+      "flow": "Gestão administrativa",
+      "description": "A jornada completa, com etapas da interface, respostas do sistema, estados e requisitos relacionados, está documentada em ../../../prd/jornadas-e-requisitos-funcionais.md. Em resumo, o administrador localiza e mantém registros, acompanha falhas, valida alterações antes de aplicá-las e consulta seus efeitos e auditoria.",
+      "states": ["edição pendente", "alteração salva", "validação rejeitada", "falha de integração", "operação não autorizada"]
+    }
+  ],
+  "edgeCases": [
+    {
+      "scenario": "A fonte esportiva está indisponível ou ainda não confirmou o encerramento da partida.",
+      "handling": "Manter os últimos dados válidos, exibir a última atualização e sinalizar que o dado pode estar desatualizado; tentar novamente conforme política operacional.",
+      "severity": "high"
+    },
+    {
+      "scenario": "Partida adiada, cancelada, interrompida ou com resultado corrigido posteriormente.",
+      "handling": "Não tratar o estado como encerramento definitivo até confirmação da fonte; registrar correções e recalcular a tabela sem duplicar a partida.",
+      "severity": "high"
+    },
+    {
+      "scenario": "Um usuário tenta abrir relatório ou executar gestão sem permissão.",
+      "handling": "Negar a operação, não revelar dados protegidos e registrar eventos de segurança relevantes.",
+      "severity": "critical"
+    },
+    {
+      "scenario": "Não existem partidas encerradas ou dados de uso no filtro escolhido.",
+      "handling": "Apresentar estado vazio contextualizado, sem substituir ausência de dados por valores zero que possam induzir a erro.",
+      "severity": "medium"
+    },
+    {
+      "scenario": "Um administrador corrige manualmente resultado ou estatística.",
+      "handling": "Validar os dados, registrar autor, horário e valores alterados e recalcular os indicadores dependentes.",
+      "severity": "high"
+    }
+  ],
+  "terminology": [
+    {
+      "term": "Brasileirão Série A",
+      "definition": "Competição brasileira de futebol da primeira divisão, no escopo inicial referente à temporada 2026.",
+      "aliases": ["Série A", "Campeonato Brasileiro Série A"]
+    },
+    {
+      "term": "Performance esportiva",
+      "definition": "Desempenho competitivo de um time medido por resultados, classificação e estatísticas esportivas; não significa desempenho técnico do aplicativo.",
+      "aliases": ["desempenho do time", "performance do time"]
+    },
+    {
+      "term": "Acesso ao aplicativo",
+      "definition": "Métrica agregada de utilização do produto, como usuários ativos, sessões e acessos dentro de um período.",
+      "aliases": ["uso do aplicativo", "métricas de acesso"]
+    },
+    {
+      "term": "Partida encerrada",
+      "definition": "Partida cujo estado final foi confirmado pela fonte de dados escolhida ou validado por administrador autorizado.",
+      "aliases": ["jogo finalizado", "resultado final"]
+    }
+  ],
+  "openQuestions": [
+    {
+      "question": "Qual fonte de dados esportivos deve ser contratada ou integrada, considerando precisão, cobertura da Série A 2026, latência após o apito final, direitos de uso e custo?",
+      "priority": "high",
+      "blocksProgress": false,
+      "assignedTo": "@architect"
+    },
+    {
+      "question": "O investidor pode consultar relatórios de todos os times da Série A ou somente do time no qual investe?",
+      "priority": "high",
+      "blocksProgress": false,
+      "defaultForMvp": "Disponibilizar estatísticas agregadas de todos os times da Série A, conforme pedido inicial; confirmar posteriormente se haverá restrição por vínculo de investimento.",
+      "assignedTo": "@pm"
+    },
+    {
+      "question": "Quais indicadores adicionais de acesso ao aplicativo devem ser incluídos além de usuários ativos, sessões e acessos por período?",
+      "priority": "medium",
+      "blocksProgress": false,
+      "assignedTo": "@pm"
+    }
+  ]
+}
