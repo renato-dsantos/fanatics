@@ -1,7 +1,9 @@
 # Fut Fanatics — Jornadas e Requisitos Funcionais
 
-**Status:** Proposta derivada das proto-personas  
-**Atualizado em:** 2026-10-06  
+**Status:** Proposta derivada das proto-personas
+
+**Atualizado em:** 2026-10-06
+
 **Escopo:** MVP do Brasileirão Série A de 2026; sem definição de tecnologias
 
 ## Objetivo e referências
