@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .aiox-core/infrastructure/templates/grok-hooks/enforce-git-push-authority.cjs",
+            "timeout": 10
+          }
+        ],
+        "matcher": "Bash|run_terminal_command"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .aiox-core/infrastructure/templates/grok-hooks/synapse-wrapper.cjs",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
