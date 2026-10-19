@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123d31">
+    <title><%= competition.name %> <%= competition.season %> | Fut Fanatics</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Fut Fanatics, início">
+        <span class="brand-mark" aria-hidden="true">FF</span>
+        <span>Fut Fanatics</span>
+      </a>
+      <div class="competition-context">
+        <span class="context-label">COMPETIÇÃO</span>
+        <span><%= competition.name %> <strong><%= competition.season %></strong></span>
+      </div>
+      <a class="header-link" href="#classificacao">Classificação <span aria-hidden="true">↓</span></a>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> TEMPORADA <%= competition.season %></p>
+          <h1 id="page-title"><%= selectedTeam ? 'A campanha do seu time.' : 'A Série A, de ponta a ponta.' %></h1>
+          <p class="intro-description">
+            <%= selectedTeam
+              ? `Acompanhe ${selectedTeam.name} e compare sua posição com a competição.`
+              : 'Classificação, resultados e números da competição em um só lugar.' %>
+          </p>
+        </div>
+        <div class="season-stamp" aria-label="Temporada 2026">
+          <span>BRASILEIRÃO</span>
+          <strong>26</strong>
+          <span>SÉRIE A</span>
+        </div>
+      </section>
+
+      <section class="data-notice" aria-label="Aviso sobre os dados">
+        <span class="notice-icon" aria-hidden="true">i</span>
+        <p><strong>Ambiente demonstrativo.</strong> <%= competition.updateLabel %> Os clubes e números exibidos são exemplos, não representam a classificação real.</p>
+      </section>
+
+      <section class="team-filter" aria-labelledby="filter-title">
+        <div>
+          <p class="section-kicker">VISÃO DO TORCEDOR</p>
+          <h2 id="filter-title">Encontre seu clube</h2>
+        </div>
+        <form action="/" method="get" class="filter-form">
+          <label class="visually-hidden" for="team-select">Selecione um time</label>
+          <select id="team-select" name="time">
+            <option value="" <%= selectedTeam ? '' : 'selected' %>>Todos os clubes</option>
+            <% teams.forEach((team) => { %>
+              <option value="<%= team.slug %>" <%= selectedTeam?.slug === team.slug ? 'selected' : '' %>><%= team.name %></option>
+            <% }) %>
+          </select>
+          <button type="submit" class="filter-button">Ver campanha <span aria-hidden="true">↗</span></button>
+        </form>
+      </section>
+
+      <% if (unknownTeam) { %>
+        <section class="empty-state" role="status">
+          <span class="empty-mark" aria-hidden="true">?</span>
+          <h2>Nenhum clube encontrado</h2>
+          <p>Escolha um clube disponível para consultar a campanha demonstrativa.</p>
+          <a class="text-link" href="/">Ver classificação completa</a>
+        </section>
+      <% } else if (selectedTeam) { %>
+        <section class="campaign-section" aria-labelledby="campaign-title">
+          <div class="section-heading campaign-heading">
+            <div>
+              <p class="section-kicker">CAMPANHA NA TEMPORADA</p>
+              <h2 id="campaign-title">Campanha de <%= selectedTeam.name %></h2>
+            </div>
+            <a class="back-link" href="/" id="classificacao">← Voltar para a classificação completa</a>
+          </div>
+
+          <div class="stat-grid" aria-label="Estatísticas demonstrativas da temporada">
+            <article class="stat-cell stat-primary"><span>POSIÇÃO</span><strong><%= selectedTeam.position %><sup>º</sup></strong></article>
+            <article class="stat-cell"><span>PONTOS</span><strong><%= selectedTeam.points %></strong></article>
+            <article class="stat-cell"><span>JOGOS</span><strong><%= selectedTeam.played %></strong></article>
+            <article class="stat-cell"><span>V · E · D</span><strong><%= selectedTeam.wins %> · <%= selectedTeam.draws %> · <%= selectedTeam.losses %></strong></article>
+            <article class="stat-cell"><span>SALDO DE GOLS</span><strong><%= selectedTeam.goalDifference > 0 ? '+' : '' %><%= selectedTeam.goalDifference %></strong></article>
+          </div>
+
+          <div class="section-heading match-heading">
+            <div>
+              <p class="section-kicker">TEMPORADA <%= competition.season %></p>
+              <h2>Partidas e resultados</h2>
+            </div>
+            <span class="updated-label">Atualização real indisponível</span>
+          </div>
+          <div class="match-list">
+            <% selectedTeam.matches.forEach((match) => { %>
+              <article class="match-row">
+                <span class="match-venue"><%= match.venue %></span>
+                <strong class="match-opponent"><%= match.opponent %></strong>
+                <span class="match-score"><%= match.score %></span>
+                <span class="match-status <%= match.status === 'Encerrada' ? 'is-final' : 'is-pending' %>"><%= match.status %></span>
+              </article>
+            <% }) %>
+          </div>
+        </section>
+      <% } else { %>
+        <section class="table-section" aria-labelledby="classificacao">
+          <div class="section-heading table-heading">
+            <div>
+              <p class="section-kicker">TODOS OS CLUBES</p>
+              <h2 id="classificacao">Classificação</h2>
+            </div>
+            <p class="table-note">Ordenação demonstrativa<br><span>pontos · vitórias · saldo de gols</span></p>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <caption class="visually-hidden">Classificação demonstrativa do Brasileirão Série A 2026</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="position-column">#</th>
+                  <th scope="col" class="club-column">CLUBE</th>
+                  <th scope="col">PTS</th>
+                  <th scope="col">J</th>
+                  <th scope="col">V</th>
+                  <th scope="col">E</th>
+                  <th scope="col">D</th>
+                  <th scope="col">GP</th>
+                  <th scope="col">GC</th>
+                  <th scope="col">SG</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% standings.forEach((team) => { %>
+                  <tr>
+                    <td class="position-cell"><%= String(team.position).padStart(2, '0') %></td>
+                    <th scope="row" class="club-cell"><a href="/?time=<%= team.slug %>"><span class="club-monogram" aria-hidden="true"><%= team.name.slice(0, 2).toUpperCase() %></span><%= team.name %></a></th>
+                    <td class="points-cell"><%= team.points %></td>
+                    <td><%= team.played %></td>
+                    <td><%= team.wins %></td>
+                    <td><%= team.draws %></td>
+                    <td><%= team.losses %></td>
+                    <td><%= team.goalsFor %></td>
+                    <td><%= team.goalsAgainst %></td>
+                    <td><%= team.goalDifference > 0 ? '+' : '' %><%= team.goalDifference %></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-footnote">PTS pontos · J jogos · V vitórias · E empates · D derrotas · GP gols pró · GC gols contra · SG saldo de gols</p>
+        </section>
+      <% } %>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="/">
+        <span class="brand-mark" aria-hidden="true">FF</span>
+        <span>Fut Fanatics</span>
+      </a>
+      <p>Brasileirão Série A · <%= competition.season %></p>
+      <span>Projeto demonstrativo</span>
+    </footer>
+  </body>
+</html>
